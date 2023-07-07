@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Пожалуйста зарегистрируйтесь или авторизуйтесь</title>
+	<link href='https://fonts.googleapis.com/css?family=Ubuntu:500' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+	<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</head>
+
+<body>
+	<img src="/static/images/GettyImages-490918312.jpg" class="background" />
+	<header>
+		<a href="{{url_for('about')}}" class="about autorisation"> About us </a>&nbsp;<button class="autorisation" type="button" data-modal="#log_modal"> Reg/Sign </button>&nbsp;<a href="https://t.me/resume_selection_bot" class="autorisation">href</a>&nbsp;<button class="kartochki autorisation" type="button" data-kartochki="#kartochki_modal">addTest</button>
+	</header>
+	<div class="center">
+		<h2>Работник какой профессии Вас интересует?</h2>
+		<form method="post" action="/add_prof" class="poisk">
+			<input type="text" placeholder="Профессия" name="text">&nbsp;
+			<input type="text" placeholder="Город" name="tag">
+			<button type="submit" class="research">Поиск</button>
+		</form>
+	<h5 class="history_get">История поиска</h5>
+	{% for prof in profs%}
+	<div>{{ prof.text }}&nbsp;<i>{{ prof.tag }}</i></div>
+	{% endfor %}
+	</div>
+	<div class="log_page" id="log_modal">
+		<div class="login">
+			<div class="login-header">
+				<h1>Login</h1>
+			</div>
+			<div class="login-form">
+				<form method="post" action="/autorisation">
+					<h3>Username:</h3>
+					<input type="password" placeholder="Username" name="Username"/><br>
+					<h3>Password:</h3>
+					<input type="password" placeholder="Password" name="Password"/>
+					<br>
+					<input type="password" placeholder="ФИО" name="Inicial"/>
+					<br>
+					<input type="password" placeholder="Компания" name="Company"/>
+					<br>
+					<input type="password" placeholder="адрес компании" name="Adres"/>
+					<br>
+					<input type="password" placeholder="email" name="Pochta"/>
+					<br>
+					<input type="password" placeholder="контактный телефон" name="Num_tel"/>
+					<br>
+					<button type="submit" value="Login" class="login-button" name="Registered" data-modalss="#mini_logmodal">Login</button>
+					<br>
+					<button class="sign-up" name="Sign_Up">Sign Up!</button>
+					<br>
+				</form>
+				<h6 class="no-access">Can't access your account?</h6>
+				<div class="error-page">
+					<div class="try-again">Error: Try again?</div>
+				</div>
+			</div>
+			<button class="close_btn" data-closemodal="#log_modal">Close</button>
+		</div>
+		<div class="mini_modal" id="mini_logmodal">
+			<button class="close_minimodal" data-closeminimodal="#mini_logmodal">X</button>
+			<text class="text_status">Вы успешно зарегистрированы!</text>
+		</div>
+	</div>
+	
+</body>
+
+</html>
+
+
+
